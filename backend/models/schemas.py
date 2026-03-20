@@ -37,12 +37,12 @@ class PostInDB(PostBase):
 class NarrativeCluster(BaseModel):
     cluster_id: int
     topic_label: str
-    keywords: List[str] = []
+    keywords: List[str] = Field(default_factory=list)
     post_count: int = 0
     influence_score: float = 0.0
     avg_virality: float = 0.0
     created_at: datetime
-    representative_posts: List[PostInDB] = []
+    representative_posts: List[PostInDB] = Field(default_factory=list)
 
 
 class EmergingSignal(BaseModel):
@@ -59,18 +59,18 @@ class EmergingSignal(BaseModel):
 class PulseScore(BaseModel):
     score: float = Field(ge=0, le=100)
     breakdown: dict
-    top_narratives: List[str] = []
-    trend_direction: str = "stable"  # rising, falling, stable
+    top_narratives: List[str] = Field(default_factory=list)
+    trend_direction: str = "stable"
     timestamp: datetime
 
 
 class ForecastResult(BaseModel):
     topic: str
-    trend_prediction: str  # rising, falling, stable
+    trend_prediction: str
     confidence_score: float = Field(ge=0, le=1)
     predicted_engagement: float
     forecast_hours: int = 48
-    data_points: List[dict] = []
+    data_points: List[dict] = Field(default_factory=list)
 
 
 class ViralityBreakdown(BaseModel):
