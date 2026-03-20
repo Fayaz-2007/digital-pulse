@@ -1,4 +1,5 @@
 import { useState, useCallback, memo, useMemo } from 'react';
+import Link from 'next/link';
 
 const NAV_ITEMS = [
   { id: 'dashboard', label: 'Dashboard', icon: '◎' },
@@ -6,6 +7,11 @@ const NAV_ITEMS = [
   { id: 'emerging', label: 'Emerging', icon: '⚡' },
   { id: 'forecast', label: 'Forecast', icon: '◉' },
   { id: 'upload', label: 'Upload', icon: '↑' },
+];
+
+const LINK_ITEMS = [
+  { href: '/', label: 'Home', icon: '⌂' },
+  { href: '/about', label: 'About', icon: '◇' },
 ];
 
 // Memoized nav item component to prevent re-renders
@@ -66,6 +72,21 @@ function Sidebar({ activeView, onNavigate }) {
           />
         ))}
       </nav>
+
+      {/* Page Links */}
+      <div className="sidebar-links">
+        {LINK_ITEMS.map((item) => (
+          <Link
+            key={item.href}
+            href={item.href}
+            className="sidebar-link-item"
+            title={item.label}
+          >
+            <span className="nav-icon">{item.icon}</span>
+            {!collapsed && <span className="nav-label">{item.label}</span>}
+          </Link>
+        ))}
+      </div>
 
       {/* Status */}
       <div className="sidebar-footer">

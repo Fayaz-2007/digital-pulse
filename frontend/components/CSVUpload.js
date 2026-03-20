@@ -208,6 +208,22 @@ export default memo(function CSVUpload({ onUploadComplete }) {
             <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.4)' }}>
               Required columns: title, content, timestamp, likes, shares, comments
             </div>
+
+            {/* Sample CSV Download */}
+            <div style={{ marginTop: 16 }}>
+              <a
+                href="/sample-data.csv"
+                download="sample-data.csv"
+                className="secondary-btn"
+                style={{ fontSize: 12, padding: '8px 16px' }}
+                onClick={(e) => e.stopPropagation()}
+              >
+                Download Sample CSV
+              </a>
+              <p style={{ fontSize: 10, color: 'rgba(255,255,255,0.4)', marginTop: 8 }}>
+                Use this sample format to upload your dataset
+              </p>
+            </div>
           </>
         )}
       </div>
